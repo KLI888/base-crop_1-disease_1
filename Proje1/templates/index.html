@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crop Recommendation System</title>
+    <meta name="description" content="AI-powered crop recommendation system based on soil and weather metrics.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="blob shape-1"></div>
+    <div class="blob shape-2"></div>
+    <div class="blob shape-3"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1>AgrAI <span>Intelligence</span></h1>
+            <p>Smart crop recommendation powered by machine learning.</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card glass">
+                <form id="prediction-form" class="form-grid">
+                    <h2>Analysis Metrics</h2>
+                    
+                    <div class="input-group">
+                        <label for="N">Nitrogen Content (N)</label>
+                        <input type="number" id="N" name="N" step="any" placeholder="e.g. 90" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="P">Phosphorus Content (P)</label>
+                        <input type="number" id="P" name="P" step="any" placeholder="e.g. 42" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="K">Potassium Content (K)</label>
+                        <input type="number" id="K" name="K" step="any" placeholder="e.g. 43" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="temperature">Temperature (°C)</label>
+                        <input type="number" id="temperature" name="temperature" step="any" placeholder="e.g. 20.8" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="humidity">Humidity (%)</label>
+                        <input type="number" id="humidity" name="humidity" step="any" placeholder="e.g. 82.0" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="ph">pH Value</label>
+                        <input type="number" id="ph" name="ph" step="any" placeholder="e.g. 6.5" required>
+                    </div>
+                    
+                    <div class="input-group full-width">
+                        <label for="rainfall">Rainfall (mm)</label>
+                        <input type="number" id="rainfall" name="rainfall" step="any" placeholder="e.g. 202.9" required>
+                    </div>
+
+                    <div class="form-actions full-width">
+                        <button type="submit" id="submit-btn" class="primary-btn">
+                            <span class="btn-text">Generate Recommendation</span>
+                            <div class="spinner" id="spinner"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="result-container" class="card glass result-card hidden">
+                <div class="result-content">
+                    <p class="subtitle">Optimal Crop to Plant</p>
+                    <h2 id="recommended-crop">Harvest</h2>
+                    <p class="description">Based on the N-P-K ratios and environmental attributes you provided, this crop will maximize your yield.</p>
+                </div>
+                <div id="error-message" class="error hidden"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
